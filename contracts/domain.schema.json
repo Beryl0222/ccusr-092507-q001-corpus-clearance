@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "自贸港语料用途放行库领域事件",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "aggregate_type",
+    "aggregate_id",
+    "occurred_at",
+    "version",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "ASSET_INGESTED",
+        "SLICE_REVIEWED",
+        "USE_REQUESTED",
+        "USE_APPROVED",
+        "RIGHT_WITHDRAWN"
+      ]
+    },
+    "aggregate_type": {
+      "type": "string",
+      "enum": [
+        "source_asset",
+        "corpus_slice",
+        "use_request",
+        "release_decision"
+      ]
+    },
+    "aggregate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "payload_required_by_event": {
+    "ASSET_INGESTED": [
+      "source_id",
+      "content_hash"
+    ],
+    "USE_REQUESTED": [
+      "purpose",
+      "territory"
+    ],
+    "RIGHT_WITHDRAWN": [
+      "right_id",
+      "effective_at"
+    ]
+  },
+  "additionalProperties": false
+}

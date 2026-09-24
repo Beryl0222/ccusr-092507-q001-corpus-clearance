@@ -1,0 +1,8 @@
+[project]
+name = "corpus-clearance"
+version = "0.1.0"
+description = "自贸港语料用途放行库领域契约"
+requires-python = ">=3.11"
+
+[tool.unittest]
+start-directory = "tests"

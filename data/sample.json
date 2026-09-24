@@ -1,0 +1,12 @@
+{
+  "event_id": "092507-001-sample-001",
+  "event_type": "ASSET_INGESTED",
+  "aggregate_type": "source_asset",
+  "aggregate_id": "corpus_clearance-001",
+  "occurred_at": "2026-09-24T12:00:00+08:00",
+  "version": 1,
+  "payload": {
+    "source_id": "sample-source_id",
+    "content_hash": "sample-content_hash"
+  }
+}
