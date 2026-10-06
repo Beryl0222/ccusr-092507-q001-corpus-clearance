@@ -35,7 +35,16 @@ class ContractTests(unittest.TestCase):
     def test_event_specific_payload_is_required(self) -> None:
         event = dict(self.sample, event_type="ASSET_INGESTED", payload={})
         issues = validate_event(event, self.schema)
-        self.assertIn(("payload.source_id", "required"), [(issue.field, issue.code) for issue in issues])
+        self.assertIn(("payload.batch_id", "required"), [(issue.field, issue.code) for issue in issues])
+
+    def test_withdraw_payload_is_required(self) -> None:
+        event = dict(self.sample, event_type="RIGHT_WITHDRAWN",
+                     aggregate_type="right_basis", payload={})
+        issues = validate_event(event, self.schema)
+        fields = {issue.field for issue in issues}
+        self.assertIn("payload.right_id", fields)
+        self.assertIn("payload.effective_at", fields)
+        self.assertIn("payload.reason", fields)
 
     def test_unknown_event_is_rejected(self) -> None:
         event = dict(self.sample, event_type="UNKNOWN")

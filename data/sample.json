@@ -6,7 +6,10 @@
   "occurred_at": "2026-09-24T12:00:00+08:00",
   "version": 1,
   "payload": {
-    "source_id": "sample-source_id",
-    "content_hash": "sample-content_hash"
+    "batch_id": "round-2026-0925",
+    "collector_id": "hainan-daily",
+    "collector_org_id": "hainan-daily",
+    "content_hash": "sample-content_hash",
+    "authorization_fingerprint": "sample-authorization-fingerprint"
   }
 }

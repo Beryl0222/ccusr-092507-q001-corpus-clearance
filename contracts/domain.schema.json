@@ -20,19 +20,39 @@
       "type": "string",
       "enum": [
         "ASSET_INGESTED",
+        "ASSET_DISPUTED",
+        "ORG_REGISTERED",
+        "SLICE_CUT",
         "SLICE_REVIEWED",
+        "RIGHT_DECLARED",
         "USE_REQUESTED",
+        "REVIEW_OPENED",
         "USE_APPROVED",
-        "RIGHT_WITHDRAWN"
+        "USE_REJECTED",
+        "REQUEST_SUPERSEDED",
+        "RIGHT_WITHDRAWN",
+        "RIGHT_EXPIRED",
+        "SLICE_FROZEN",
+        "DATASET_REGISTERED",
+        "DATASET_DERIVATION_RECORDED",
+        "DATASET_FROZEN",
+        "PUBLICATION_RECORDED",
+        "DISPOSITION_RAISED",
+        "DISPOSITION_FULFILLED",
+        "DECISION_EFFECTIVENESS_CHANGED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
+        "organization",
         "source_asset",
         "corpus_slice",
+        "right_basis",
         "use_request",
-        "release_decision"
+        "release_decision",
+        "derived_dataset",
+        "disposition"
       ]
     },
     "aggregate_id": {
@@ -52,17 +72,101 @@
     }
   },
   "payload_required_by_event": {
+    "ORG_REGISTERED": [
+      "org_id"
+    ],
     "ASSET_INGESTED": [
-      "source_id",
+      "batch_id",
+      "collector_id",
       "content_hash"
     ],
+    "ASSET_DISPUTED": [
+      "batch_id",
+      "content_hash"
+    ],
+    "SLICE_CUT": [
+      "asset_id",
+      "ordinal",
+      "content_hash"
+    ],
+    "SLICE_REVIEWED": [
+      "review_kind",
+      "reviewer_id",
+      "passed"
+    ],
+    "RIGHT_DECLARED": [
+      "right_id",
+      "asset_id",
+      "declarer_id",
+      "territories",
+      "languages"
+    ],
     "USE_REQUESTED": [
+      "applicant_id",
       "purpose",
-      "territory"
+      "slice_ids",
+      "territories",
+      "languages",
+      "products",
+      "materials_fingerprint"
+    ],
+    "REVIEW_OPENED": [
+      "review_kind"
+    ],
+    "USE_APPROVED": [
+      "request_id",
+      "decider_id",
+      "grants"
+    ],
+    "USE_REJECTED": [
+      "request_id",
+      "decider_id",
+      "reason"
+    ],
+    "REQUEST_SUPERSEDED": [
+      "superseded_by"
     ],
     "RIGHT_WITHDRAWN": [
       "right_id",
-      "effective_at"
+      "effective_at",
+      "reason"
+    ],
+    "RIGHT_EXPIRED": [
+      "right_id"
+    ],
+    "SLICE_FROZEN": [
+      "reason"
+    ],
+    "DATASET_REGISTERED": [
+      "dataset_id",
+      "product",
+      "slice_ids"
+    ],
+    "DATASET_DERIVATION_RECORDED": [
+      "parent_dataset_id",
+      "child_dataset_id"
+    ],
+    "DATASET_FROZEN": [
+      "dataset_id",
+      "reason"
+    ],
+    "PUBLICATION_RECORDED": [
+      "publication_id",
+      "published_at",
+      "basis"
+    ],
+    "DISPOSITION_RAISED": [
+      "disposition_id",
+      "slice_id",
+      "kind",
+      "description"
+    ],
+    "DISPOSITION_FULFILLED": [
+      "disposition_id"
+    ],
+    "DECISION_EFFECTIVENESS_CHANGED": [
+      "effective",
+      "reason"
     ]
   },
   "additionalProperties": false

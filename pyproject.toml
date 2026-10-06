@@ -1,7 +1,7 @@
 [project]
 name = "corpus-clearance"
 version = "0.1.0"
-description = "自贸港语料用途放行库领域契约"
+description = "自贸港语料用途放行库：事件溯源、权利边界与放行决定服务"
 requires-python = ">=3.11"
 
 [tool.unittest]
