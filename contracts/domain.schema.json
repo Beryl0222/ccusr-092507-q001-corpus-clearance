@@ -19,20 +19,39 @@
     "event_type": {
       "type": "string",
       "enum": [
+        "ORG_REGISTERED",
         "ASSET_INGESTED",
+        "ASSET_QUARANTINED",
+        "ASSET_DISPUTE_RESOLVED",
+        "SLICE_CUT",
         "SLICE_REVIEWED",
+        "GRANT_RECORDED",
+        "GRANT_EXPIRED",
+        "GRANT_WITHDRAWN",
+        "SLICE_FROZEN",
         "USE_REQUESTED",
         "USE_APPROVED",
+        "USE_DENIED",
+        "DECISION_SUPERSEDED",
+        "DATASET_CREATED",
+        "DATASET_PUBLISHED",
+        "DATASET_FROZEN",
+        "OBLIGATION_RAISED",
+        "OBLIGATION_FULFILLED",
         "RIGHT_WITHDRAWN"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
+        "source_org",
         "source_asset",
         "corpus_slice",
+        "rights_grant",
         "use_request",
-        "release_decision"
+        "release_decision",
+        "derived_dataset",
+        "obligation"
       ]
     },
     "aggregate_id": {
@@ -52,13 +71,93 @@
     }
   },
   "payload_required_by_event": {
+    "ORG_REGISTERED": [
+      "org_id",
+      "name"
+    ],
     "ASSET_INGESTED": [
       "source_id",
       "content_hash"
     ],
+    "ASSET_QUARANTINED": [
+      "reason"
+    ],
+    "ASSET_DISPUTE_RESOLVED": [
+      "resolved_version",
+      "resolution"
+    ],
+    "SLICE_CUT": [
+      "slice_id",
+      "grants"
+    ],
+    "SLICE_REVIEWED": [
+      "duty",
+      "reviewer_id",
+      "passed"
+    ],
+    "GRANT_RECORDED": [
+      "grant_id",
+      "granter_org_id",
+      "territories",
+      "languages",
+      "products",
+      "retain_until"
+    ],
+    "GRANT_EXPIRED": [
+      "grant_id"
+    ],
+    "GRANT_WITHDRAWN": [
+      "grant_id",
+      "effective_at"
+    ],
+    "SLICE_FROZEN": [
+      "reason"
+    ],
     "USE_REQUESTED": [
       "purpose",
       "territory"
+    ],
+    "USE_APPROVED": [
+      "decision_id",
+      "request_materials_hash",
+      "territory",
+      "language",
+      "product",
+      "valid_from",
+      "valid_until"
+    ],
+    "USE_DENIED": [
+      "decision_id",
+      "request_materials_hash",
+      "territory",
+      "language",
+      "product",
+      "reason"
+    ],
+    "DECISION_SUPERSEDED": [
+      "decision_id"
+    ],
+    "DATASET_CREATED": [
+      "dataset_id",
+      "product",
+      "slice_ids"
+    ],
+    "DATASET_PUBLISHED": [
+      "dataset_id",
+      "basis"
+    ],
+    "DATASET_FROZEN": [
+      "dataset_id",
+      "reason"
+    ],
+    "OBLIGATION_RAISED": [
+      "obligation_id",
+      "dataset_id",
+      "kind",
+      "detail"
+    ],
+    "OBLIGATION_FULFILLED": [
+      "obligation_id"
     ],
     "RIGHT_WITHDRAWN": [
       "right_id",
